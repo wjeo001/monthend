@@ -1,0 +1,12 @@
+div div table tbody tr{
+    height: 100px;
+}
+.invisible {
+    visibility: hidden;
+}
+.visible {
+    visibility:visible;
+}
+h6 {
+    font-size: 12px;
+}
