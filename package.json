@@ -10,9 +10,14 @@
   "author": "Arsedian Ivan & Jeremy Jeon",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.3",
     "express": "^4.16.4",
+    "express-session": "^1.15.6",
     "moment": "^2.23.0",
+    "morgan": "^1.9.1",
     "nodemon": "^1.18.9",
+    "sequelize": "^4.42.0",
     "serve-favicon": "^2.5.0",
     "sqlite": "^3.0.0"
   },
