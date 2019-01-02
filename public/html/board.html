@@ -8,6 +8,8 @@
     <meta name="description" content="MONTHEND.CO">
 	<!-- Custom styles -->
 	<link rel="stylesheet" href="../css/styles.min.css">
+	<link rel="stylesheet" href="../css/login_modal.css">
+
 </head>
 <body>
 	
@@ -63,7 +65,8 @@
 					<a href="" class="settingsIcon"></a>
 				</li>
 				<li>
-					<a href="" class="userIcon"></a>
+					<a href="#" class="userIcon" id="trigger"></a>
+					
 				</li>
 			</ul>
 		</div>
@@ -80,9 +83,17 @@
 		<div class="boards" id="board-container">
 			<div class="single-board">
 				<span class="board-title">To do</span>
-				<div class="board-elements-container panel">
+				<div class="board-elements-container panel sortable">
 					<div class="board-element">
 						<h4 class="element-title">Statement of Changes in Equity</h4>
+						<span class="due-time">Due in 5 days</span>
+						<div class="icons">
+							<a href="" class="btn-icon btn-usericon4"></a>
+						</div>
+					</div>
+				
+					<div class="board-element">
+						<h4 class="element-title">Statement of Changes in Equity2</h4>
 						<span class="due-time">Due in 5 days</span>
 						<div class="icons">
 							<a href="" class="btn-icon btn-usericon4"></a>
@@ -92,7 +103,7 @@
 			</div>
 			<div class="single-board">
 				<span class="board-title">In progress</span>
-				<div class="board-elements-container panel">
+				<div class="board-elements-container panel sortable">
 					<div class="board-element">
 						<h4 class="element-title">Statement of Profit and Loss</h4>
 						<span class="due-time">Due in 4 days</span>
@@ -105,7 +116,7 @@
 			</div>
 			<div class="single-board">
 				<span class="board-title">Review line 1</span>
-				<div class="board-elements-container panel">
+				<div class="board-elements-container panel sortable">
 					<!-- <div class="board-element">
 						<h4 class="element-title">Statement of Changes in Equity</h4>
 						<span class="due-time">Due in 5 days</span>
@@ -117,7 +128,7 @@
 			</div>
 			<div class="single-board">
 				<span class="board-title">Review line 2</span>
-				<div class="board-elements-container panel">
+				<div class="board-elements-container panel sortable">
 					<div class="board-element">
 						<h4 class="element-title">Statement of Financial Position</h4>
 						<span class="due-time">Due in 3 days</span>
@@ -180,12 +191,39 @@
 		</div>
 
 	</section>
+
+	
+	<div class="modal" id="modal">
+		<div class="modal-content">
+			<span class="close-button" id="close-button">×</span>
+			<h1>Monthend - Login</h1>
+			<div class="loginsection">
+				<form action="/auth/login" method="post">
+					<div class="lol">
+						<label>Username:</label>
+						<input type="text" name="username"/>
+					</div>
+					<div class="lol">
+						<label>Password:</label>
+						<input type="password" name="password"/>
+					</div>
+					<div class="lol">
+						<input class="btn btn-pill" type="submit" value="Log In"/>
+					</div>
+				</form>           
+			</div>     
+		</div>
+	</div>
+
+
+	<script src="https://unpkg.com/moment"></script>
 	<script
 		src="https://code.jquery.com/jquery-3.3.1.min.js"
 		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 		crossorigin="anonymous">
 	</script>
-	
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script src="../js/board.js"></script>
+	
 </body>
 </html>
