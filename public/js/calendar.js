@@ -1,6 +1,8 @@
 let today = new Date();
-let dtCurrMonth = today.getMonth();
-let dtCurrYear = today.getFullYear();
+//let dtCurrMonth = today.getMonth();
+//let dtCurrYear = today.getFullYear();
+let dtCurrMonth = 11;
+let dtCurrYear = 2018
 let selectYear = document.getElementById("year");
 let selectMonth = document.getElementById("month");
 let lstMonths = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -10,7 +12,11 @@ let tbl = document.getElementById("calendar-body"); // body of the calendar
 
 let DueDate=moment([2018,11,31])
 
-
+document.getElementById("newtask").onclick=function(){
+    
+    InsertNewtask()
+    
+}
 showCalendar(dtCurrMonth, dtCurrYear);
 
 let a=$("#calendar-body")
@@ -108,7 +114,7 @@ function showCalendar(month, year) {
                             }*/
                             //alert('clicked '+ d);
                             //refreshBacklogLost(date);
-                            refreshBacklogLost(d,f);
+                            refreshBacklogList(d,f);
 
                         }
                     }(DueDate,DueDate.diff(currDate, 'days')));
@@ -135,7 +141,7 @@ function setTableHeading(){
     
 }
 
-function refreshBacklogLost(datex,d_day){
+function refreshBacklogList(datex,d_day){
     var backlog=document.getElementById("backloglist");
     backlog.innerHTML="";
     var date_clicked=datex.format("YYYY-MM-DD");
@@ -215,4 +221,38 @@ function CreateBacklogItem(name,date,user){
     duedate.innerText="in " + daysleft + ' days';
     itm_backlog.appendChild(duedate);
     return itm_backlog;
+}
+
+function InsertNewtask(){
+    var params={
+        text: "newtasklol"
+        ,column: "To Do"
+        ,due_date: "2018-12-31"
+        ,workflow_id: 1
+        ,column_position: 1
+    }
+    console.log(params);
+    $.ajax({
+        url: 'backlog/newtask',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(params),
+        dataType: 'json',
+        success: (data) => {
+            console.log('/newtask = > ajax success!',data);
+            /*$.each(data, function(index,item) {
+                backlog.appendChild(CreateBacklogItem(item.text,moment(item.due_date,"YYYY-MM-DD"),1))
+              });
+            */
+        },
+        error: (request, status, error) => {
+            alert(request.responseText);
+        }
+    }).then(()=>{
+        showCalendar(dtCurrMonth, dtCurrYear);
+    });
+
+    $(document).ajaxError(()=>{
+        alert('unknown ajax error when inserting new task')
+    });
 }
