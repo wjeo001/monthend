@@ -7,10 +7,14 @@ const app=express();
 const PORT=3000;
 const routes=require('./routes');
 const routesHome=require('./routes/home.js');
+const routesAuth=require('./routes/auth.js');
 const routesBacklog=require('./routes/backlog')
 const routesBoard=require('./routes/board')
 const routesBoardEntities=require('./routes/board-entities')
 const routesRecentActivity=require('./routes/indexrecentactivity')
+
+var morgan = require('morgan');
+
 
 //express method - add specific middleware to path
 //public folder on path /
@@ -19,10 +23,18 @@ app.use(express.static(__dirname+ '/public'));
 //express method - use json
 //app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+app.use(morgan('dev'));
+
+
+
+
+
+
 
 app.use('/',routes());
 app.use('/home',routesHome());
 app.use('/backlog',routesBacklog);
+app.use('/auth',routesAuth);
 app.use('/board',routesBoard);
 app.use('/board-entities',routesBoardEntities);
 app.use('/indexrecentactivity',routesRecentActivity);
