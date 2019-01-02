@@ -39,6 +39,21 @@ router.get('/:id',(req,res)=>{
             res.send(rows);
     })
 })
+router.get('/cards/:id/:col_id',(req,res)=>{
+    DB.all(
+        'select id,sort_order,text,strftime(\'%Y-%m-%d\',due_date) as due_date,workflow_id from card WHERE workflow_id=$id and column_position=$col_id order by sort_order',
+        {
+            $id: req.params.id,
+            $col_id: req.params.col_id
+        },
+        (err,rows)=>{
+            if (err){
+                console.log(err)
+            }
+            console.log(rows);
+            res.send(rows);
+    })
+})
 
 router.get('/columns/:id',(req,res)=>{
     console.log("columns")
